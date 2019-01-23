@@ -1,0 +1,19 @@
+<h3>以下の内容で、送信する。</h3>
+
+<!-- createアクションを呼び出しデータベースにデータを保存するために確認画面に「url: blogs_path」を入れる -->
+<%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+    <%= form.hidden_field :title %>
+    <%= form.hidden_field :content %>
+
+    <p>タイトル:<%= @blog.title %></p>
+    <p>本文:<%= @blog.content %></p>
+  <%= form.submit "登録する" %>
+<% end %>
+
+
+<!-- newアクションを実行リクエストするためHTTPメソッドはgetにする -->
+<%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= form.submit "もどる", name: 'back' %>
+<% end %>

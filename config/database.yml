@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails_series_kadai_development
+
+test:
+  <<: *default
+  database: rails_series_kadai_test
+
+production:
+  <<: *default
+  database: rails_series_kadai_production
+  username: rails_series_kadai
+  password: <%= ENV['RAILS_SERIES_KADAI_DATABASE_PASSWORD'] %>

@@ -1,0 +1,37 @@
+<!--
+form_with(model: @blog, local: true) do |form|
+
+form_withはデフォルトで、引数によってどのようなURLで送信するかが決まっています。
+
+・引数がレコードに存在しない場合、createアクションへ送信します。
+・引数がレコードに存在している場合、updateアクションへ送信します。
+
+confirmアクションへ送信するために「url: confirm_blogs_pathurlオプション」を記述する
+↓↓↓↓↓
+form_with(model: @blog, local: true, url: confirm_blogs_path) do |form|
+-->
+
+<%= form_with(model: @blog, local: true, url: choose_new_or_edit) do |form| %>
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @blog.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="blog_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="blog_title">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "ブログ一覧画面にもどる", blogs_path %>

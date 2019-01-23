@@ -1,0 +1,30 @@
+<h1>ブログ一覧</h1>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= blog.user.name if blog.user %></td>
+    <!-- 「blog.user.name」だけだとblogsテーブルにuser_idカラムを追加する前に作成したブログがある場合user_idの値が空のためエラーになるため「if blog.user」を追加した。
+    https://client.diveintocode.jp/questions/5306 -->
+    <td><%= link_to '詳細を確認する', blog_path(blog.id) %></td>
+    <% if blog.user == current_user %>
+    <!-- 「if blog.user_id == current_user.id」だとログインしていると有効だがログアウトでエラーが出る。
+    「undefined method `id' for nil:NilClass」 -->
+      <td><%= link_to 'ブログを編集する', edit_blog_path(blog.id) %></td>
+      <td><%= link_to 'ブログを削除する', blog_path(blog.id), method: :delete, data: {confirm: "本当に削除していいですか？"} %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'DIVE INTO CODEのページへ', 'https://diveintocode.jp/'  %>
+<%= link_to '新しくブログを投稿する', new_blog_path %>
