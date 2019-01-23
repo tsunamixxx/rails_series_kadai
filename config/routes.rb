@@ -21,5 +21,4 @@ Rails.application.routes.draw do
   # letter_openerのルーティング。ローカルでのメール送信テスト。
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-
 end
