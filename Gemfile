@@ -58,6 +58,9 @@ group :development do
   gem 'letter_opener_web'
 
   gem 'faker'
+
+  gem 'carrierwave'
+  gem 'mini_magick'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -8,4 +8,7 @@ class Blog < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
+
+  # 写真投稿
+  mount_uploader :image, ImageUploader
 end
